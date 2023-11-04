@@ -28,16 +28,7 @@ L’application se compose de plusieurs zones :
 
 Chaque pièce peut être déplacée, supprimée, modifiée, et reliée à d’autres.
 
-# Fonctionnalités principales
-
-* Création et suppression dynamique de pièces.
-* Drag & Drop des éléments dans la zone de jeu.
-* Détection automatique des connexions entre pièces compatibles.
-* Génération automatique de la commande complète.
-* Exécution réelle de la commande via WSL / Ubuntu.
-* Interface graphique basée sur OpenGL (GLUT, GLEW, GLM).
-
-# Technologies utilisées
+## Technologies utilisées
 
 * Langage : C++
 * Bibliothèques : OpenGL, GLEW, GLUT, GLM
@@ -45,7 +36,7 @@ Chaque pièce peut être déplacée, supprimée, modifiée, et reliée à d’au
 * Gestion de projet : Git & GitHub
 * Build system : CMake
 
-# Installation (Linux / WSL recommandé)
+## Installation (Linux / WSL recommandé)
 
 1️⃣ Installer les dépendances :
 ```
@@ -73,3 +64,34 @@ make
 ```
 ./PUSH/PUSH
 ```
+
+## Fonctionnement interne
+### Création des pièces
+
+Chaque pièce du puzzle correspond à un élément du langage UNIX :
+* Processus : une commande (ex. ls, grep, cat...)
+* Tube : relie deux processus (|)
+* Redirection Entrée (<)
+* Redirection Sortie (>)
+* Redirection Erreur (2>)
+
+Les pièces sont dessinées en 2D via OpenGL, à partir d’un ensemble de triangles.  
+Chaque pièce possède :
+* des coordonnées centrales (x0, y0)
+* un ensemble de sommets définissant sa forme
+* des booléens d’entrée/sortie (pour savoir si elle peut se connecter à d’autres)
+
+Les formes sont stockées dans des structures héritant d’une classe de base Piece.
+
+### Interaction utilisateur — Drag & Drop
+
+Le déplacement des pièces se fait à la souris :
+* Lors d’un clic gauche, si le curseur se trouve sur une pièce, celle-ci devient “active”.
+* Tant que le bouton est maintenu, la pièce suit les coordonnées du curseur.
+* Une conversion entre les coordonnées écran (pixels) et le repère OpenGL (-1 à 1) est effectuée :
+```
+float vX = (2 * (float)x / glutGet(GLUT_SCREEN_WIDTH)) - 1;
+float vY = -((2 * (float)y / glutGet(GLUT_SCREEN_HEIGHT)) - 1);
+```
+
+Les mouvements sont limités à la zone de jeu, afin d’éviter que les pièces ne sortent de l’écran.
