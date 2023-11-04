@@ -37,4 +37,4 @@ L’application se compose de plusieurs zones :
 
 Chaque pièce peut être déplacée, supprimée, modifiée, et reliée à d’autres.
 
-![alt text](https://perso.esiee.fr/~kehlhofp/Videos/PUSH.mp4)
+![Image](https://github.com/user-attachments/assets/f05542fa-a439-41fb-be66-f4500fb385e0)
