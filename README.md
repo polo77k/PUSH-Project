@@ -95,3 +95,28 @@ float vY = -((2 * (float)y / glutGet(GLUT_SCREEN_HEIGHT)) - 1);
 ```
 
 Les mouvements sont limités à la zone de jeu, afin d’éviter que les pièces ne sortent de l’écran.
+
+### Assemblage du puzzle
+
+L’assemblage est géré par la fonction avengersPuzzle(), qui :
+* détecte les collisions entre pièces,
+* vérifie leur compatibilité logique (par exemple, un Tube ne peut s’attacher qu’entre deux Processus),
+* et les imbrique si les conditions sont remplies.
+
+Lorsque deux pièces s’assemblent, leur position se “verrouille” pour symboliser la connexion.
+
+### Génération et exécution des commandes
+
+Une fois les pièces assemblées :
+* La fonction writingCommand() parcourt les pièces pour générer la commande finale.
+* Exemple :
+```
+[Processus: ls] — [Tube] — [Processus: grep .cpp]
+```
+
+devient :
+```
+ls | grep .cpp
+```
+* Lors de la validation (touche Execute), la commande est envoyée à l’interpréteur Linux via WSL.
+* Les résultats s’affichent dans la zone de sortie standard ou sortie d’erreur.
