@@ -120,3 +120,18 @@ ls | grep .cpp
 ```
 * Lors de la validation (touche Execute), la commande est envoyée à l’interpréteur Linux via WSL.
 * Les résultats s’affichent dans la zone de sortie standard ou sortie d’erreur.
+
+* Migration vers GLUT
+
+Initialement développé avec GLFW, le projet a ensuite migré vers GLUT pour intégrer GLUI, permettant la gestion de champs de texte et d’interactions plus avancées (par exemple : saisir une commande directement dans une pièce).
+
+Cette migration a aussi simplifié la boucle d’exécution, GLUT gérant automatiquement les callbacks (clavier, souris, rafraîchissement…).
+
+## Bilan et apprentissages
+
+Le projet PUSH a permis :
+* d’explorer en profondeur OpenGL et ses bibliothèques,
+* de comprendre la logique interne d’un interpréteur UNIX,
+* et de développer un outil à la fois pédagogique et fonctionnel.
+
+Ce travail a aussi consolidé les compétences en C++, en travail collaboratif (GitHub), et en gestion de projet logiciel.
