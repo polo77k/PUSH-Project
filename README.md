@@ -36,7 +36,7 @@ Chaque pièce peut être déplacée, supprimée, modifiée, et reliée à d’au
 * Gestion de projet : Git & GitHub
 * Build system : CMake
 
-## Installation (Linux / WSL recommandé)
+## Installation (Linux / WSL)
 
 1️⃣ Installer les dépendances :
 ```
